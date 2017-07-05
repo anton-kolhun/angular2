@@ -1,0 +1,15 @@
+.editIcon {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background: url(../../img/edit-icon.png);
+  border: 0px;
+}
+
+.removeIcon {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background: url(../../img/remove-icon.png);
+  border: 0px;
+}

@@ -1,0 +1,14 @@
+<div style="text-align:center">
+  <form (ngSubmit)="login()">
+    <div class="alert-danger" *ngIf="errorMessage !== null">{{errorMessage}}</div>
+    <label>username:</label>
+    <input type="text>" [(ngModel)]="userCreds.name" name="username" required/>
+    <br/>
+    <label>password:</label>
+    <input type="password" [(ngModel)]="userCreds.password" name="password" required/>
+    <br/>
+    <button class="btn-primary" type="submit">Login</button>
+  </form>
+</div>
+
+

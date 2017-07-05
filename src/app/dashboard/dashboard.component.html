@@ -1,0 +1,55 @@
+<div *ngIf="project">
+  <h4 align="center"> {{project.Name}}
+    <button class="btn btn-primary pull-right" (click)="openModalWindow()">
+      New ticket
+    </button>
+  </h4>
+
+  <div *ngIf="errorMessage!=null" class="alert-danger">Error occurred: {{errorMessage}}</div>
+  <div class="col-sm-2" *ngFor="let statusId of  allStatusIds">
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        {{IdToName.get(statusId)}}
+      </div>
+      <div class="panel-body" dnd-droppable (onDropSuccess)="moveTicket($event,statusId)" [dropZones]="['dropZone']">
+        <div *ngFor="let ticket of ticketsByStatusId[statusId]"
+             dnd-draggable [dragData]="[ticket,statusId]" [dropZones]="['dropZone']">
+          <span style="color: blue; font-size: 1.2rem">{{ticket.Name}}</span>
+          <span style="float: right">
+              <button (click)="editTicket(ticket);" class="editIcon"
+                      title="Edit"></button>
+              <button (click)="deleteTicket(ticket);" class="removeIcon" title="Delete"></button>
+            </span>
+          <hr/>
+        </div>
+      </div>
+    </div>
+  </div>
+  <modal #ticketModal (onClose)="closeTicketModalWindow(form)">
+    <modal-header>
+      <h2>Create/Update ticket</h2>
+    </modal-header>
+    <modal-content>
+      <form (ngSubmit)="createOrUpdateTicket()" #form>
+        <input type="hidden" [(ngModel)]="activeTicket.Id" name="id"/>
+        <div class="form-group">
+          <label>Name:</label>
+          <input [(ngModel)]="activeTicket.Name" name="name" required class="form-control" #name="ngModel"/>
+          <div *ngIf="name.errors && name.dirty"
+               class="alert alert-danger">
+            <div [hidden]="!name.errors.required">
+              Name is required
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Description:</label>
+          <input [(ngModel)]="activeTicket.Description" name="statusId" class="form-control"/>
+        </div>
+        <button class="btn btn-primary pull-right" type="submit">Save</button>
+      </form>
+    </modal-content>
+  </modal>
+</div>
+
+

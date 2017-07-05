@@ -1,0 +1,9 @@
+.more {
+  display: inline-block;
+  width: 19px;
+  height: 19px;
+  background: url(../../img/icon-more-plus.png) no-repeat 2px 2px;
+}
+.table td {
+  padding: 0.75rem 0.5rem 0.75rem 0.5rem;
+}
